@@ -1,0 +1,32 @@
+'''
+def a(**kwargs):
+
+    print(kwargs)
+print(type(a(c=2,d=1)))
+'''
+
+
+
+
+'''
+import os
+#os.remove('aaa.txt')
+#os.rename('test.txt','aaa.txt')
+
+#os.mkdir('asd')
+print(os.getcwd())
+
+'''
+
+
+hello world
+
+
+
+
+
+
+
+
+
+
