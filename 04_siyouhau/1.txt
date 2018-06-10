@@ -1,0 +1,13 @@
+name:s3
+age:21
+sex:男
+cj{'2': '3', '4': '3'}name:s1
+age:22
+sex:男
+cj{'w': '2'}name:s2
+age:22
+sex:女
+cj{'e': '33'}name:s3
+age:21
+sex:男
+cj{'e': '11', 'r': '33'}
