@@ -14,7 +14,7 @@ class Person(object):
 dog=Dog()
 xiaot=XiaoTianDog()
 man=Person()
-man.AndDogPlay(dog)#return返回符号等内容，输出不完美
+man.AndDogPlay(xiaot)#return返回符号等内容，输出不完美
 
 
 
