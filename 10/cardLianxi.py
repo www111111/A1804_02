@@ -1,4 +1,5 @@
 import tool
+import os
 lis=[]
 '''
 def systemMnue():
@@ -38,8 +39,8 @@ class Card(object):
     def displayAll(self):
 
         f=open('1.txt','r')
-        xx=f.read()
-        lis=xx
+        lis=eval(f.read())
+
         print(lis)
         print('*'*30)
         print('所有名片显示内容如下 ： ')
@@ -55,12 +56,17 @@ class Card(object):
 #card.newCard()
 #card.displayAll()
 
-'''
     def searchCard(self):
         print('*'*30)
+        f=open('1.txt','r')
+        lis=eval(f.read())
+
+        #print(lis)
         nameShuR=input('输入查询的名字 \t')
         print('正在查询 %s 的名字 '%nameShuR)
         for dir in lis:
+          #  print(lis)
+         #   print(dir)
             if dir['name']== nameShuR:
                 print('姓名：%s' % dir['name'])
                 print('年龄：%s' % dir['age'])
@@ -73,6 +79,10 @@ class Card(object):
 
     def delete(self):
         print('*'*30)
+        f=open('1.txt','r')
+        lis=eval(f.read())
+
+        #print(lis)
         a=input('输入删除的名片名字 \t')
         print('请删除 %s 名片' % a)
         for dir in lis:
@@ -81,20 +91,30 @@ class Card(object):
                 lis.remove(dir)
                 print(lis)
         print('删除 %s 成功' % a)
+        f=open('1.txt','w+')
+        f.write(repr(lis))
+        f.close()
+        #f=open('1.txt','r+')
         print('*'*30)
 
-    def xiuGai(self,f):
+    def xiuGai(self,value):
         print('*'*30)
+        f=open('1.txt','r')
+        lis=eval(f.read())
+
+        #print(lis)
         print('请修改 %s 的名片' % f)
         #print(f)
         for dir in lis:
-            if dir['name']== f:
+            if dir['name']== value:
                 dir['name']=input('输入修改后名字')
                 dir['age']=int(input('输入修改后age'))
                 dir['email']=input('输入修改后email')
         print('已修改 %s 的名片' % f)
+        f=open('1.txt','w+')
+        f.write(repr(lis))
+        f.close()
         print('*'*30)
-'''
 
 #systemMnue()
 tool.systemMnue()
@@ -108,19 +128,17 @@ while(True):
     elif sr == 2:
         card.displayAll()
 
-'''
     elif sr ==3:
-        searchCard()
+        card.searchCard()
     elif sr ==4:
-        delete()
+        card.delete()
 
     elif sr ==5:
-        f=input('输入')
-        xiuGai(f)
+        value=input('输入')
+        card.xiuGai(value)
         #f=input('输入')
     else:
         jub=input('确定退出系统？ Y/N \t')
         if(jub =='Y'):
-            exitSys()
+            card.exitSys()
             break
-'''
