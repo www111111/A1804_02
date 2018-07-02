@@ -23,7 +23,7 @@ class Plan(Base):
         self.image_num = 0           #While True增加次数，效果延迟
         self.image_index = 0         # 爆炸图片id
         self.create_image()          #添加艾图片函数
-        self.flag1=False             #
+        #self.flag1=False             #
     def create_image(self):
         self.bomb_list.append(pygame.image.load('./images/enemy1_down1.png'))
         self.bomb_list.append(pygame.image.load('./images/enemy1_down2.png'))
@@ -42,12 +42,28 @@ class Plan(Base):
                 self.image_index=0
                 #self.rect.x=0
                 #self.rect.y=-10
-               # print('游戏胜利')
+                #print('游戏胜利')
                 print('游戏结束')
-            #    exit()
+                exit()
         else:
             self.screen.blit(self.hero_plan,self.rect)          #将子弹加载到界面
 
+        if self.hit == True:
+            self.screen.blit(self.bomb_list[self.image_index],self.rect)  #将特定图片添加到屏幕
+            self.image_num += 1
+            if self.image_num == 7:
+                self.image_index += 1                                     #图片id增加
+                self.image_num = 0
+            if self.image_index >= 3:                                     #如果图片加载完毕，就会结束程序
+                #self.bomb_list.clear()
+                self.image_index=0
+                #self.rect.x=0
+                #self.rect.y=-10
+                #print('游戏胜利')
+                print('游戏结束')
+                exit()
+        else:
+            self.screen.blit(self.hero_plan,self.rect)          #将子弹加载到界面
         if len(self.bullet_list) > 0:
             for i in self.bullet_list:         #遍历列表中的i对象，执行一次飞机显示子弹就显示
                 if i.judge():                  #如果过界标志位为TRUE则执行以下内容
@@ -187,33 +203,34 @@ def panduan(hero,diren,diren1):
         if diren.rect.y+50 >= i.y >=diren.rect.y and diren.rect.x +50 >= i.x >= diren.rect.x and i.y>0:
             diren.bomb()
             print('hero win')
-            exit()
+
+            #exit()
         #摧毁小敌机 （xy行走）
         if diren1.rect.y+30 >= i.y >=diren1.rect.y and diren1.rect.x +30 >= i.x >= diren1.rect.x and i.y>0:
             diren1.bomb()
             print('hero win')
-            exit()
+            #exit()
     for i in hero.bullet1_list:   #判断hero快速子弹坐标
         #摧毁大敌机
         if diren.rect.y+50 >= i.y >=diren.rect.y and diren.rect.x +50 >= i.x >= diren.rect.x and i.y>0:
             diren.bomb()
             print('hero win')
-            exit()
+            #exit()
         #摧毁小敌机
         if diren1.rect.y+30 >= i.y >=  diren1.rect.y and diren1.rect.x +30 >= i.x >= diren1.rect.x and i.y>0:
             diren1.bomb()
             print('hero win')
-            exit()
+            #exit()
     for i in diren.bullet_list:# 判断diren普通子弹坐标
         #diren大飞机摧毁已方飞机
         if hero.rect.y+124 >= i.y >= hero.rect.y and hero.rect.x +90 >= i.x >= hero.rect.x and i.y>0:
             hero.bomb()
             print('diren win')
-            exit()
+            #exit()
     for i in diren1.bullet_list:# 判断diren快速子弹坐标
         #diren小飞机摧毁已方飞机
         if hero.rect.y+124 >= i.y >= hero.rect.y and hero.rect.x +90 >= i.x >= hero.rect.x and i.y>0:
             hero.bomb()
             print('diren win')
-            exit()
+            #exit()
 
