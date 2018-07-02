@@ -1,6 +1,8 @@
+
 import pygame
-import time
 import random
+import time
+
 class Base(object):         #设飞机的父类
      def __init__(self,imgpath,screen,x,y):
          self.screen=screen #创建的窗口 对象
@@ -59,7 +61,6 @@ class Enemy_plane(Plane):
         self.flag = 'right'
         self.num = 2
         self.hit = False
-        #self.fire_list = []
     def auto_move(self):
         if self.flag == 'right':
             self.rect.x += 5
@@ -75,7 +76,7 @@ class Enemy_plane(Plane):
         self.fire_list.append(Enemy_bullet(self.screen,'./images/bullet-1.gif',self.rect.x,self.rect.y))
 
     def bomb(self):
-        for ss in self.enemy_bom:      #遍历爆炸图片并相应显示,遍历完即爆炸图片消失
+        for ss in self.enemy_bom:      #遍历爆炸图片并相应显示
             self.screen.blit(ss,(self.rect.x,self.rect.y))
             pygame.display.update()
             clock = pygame.time.Clock() #和update使用
@@ -87,7 +88,6 @@ class Dijiqun(object):                  #定义敌机群类
         self.screen = screen
         self.images = images
         self.dijiqun_list = []          #存放敌机的列表
-        #self.a = 1
     def add(self):
         self.dijiqun_list.append(Enemy_plane(self.screen,self.images))
     def display(self,hero_plane):
@@ -102,7 +102,8 @@ class Dijiqun(object):                  #定义敌机群类
             jiluo(i,hero_plane,100,124)         #在i遍历子弹，与hero_plane的位置比较
             if i.hit == True:                   #如果爆炸标志为为True，删除图片
                 self.dijiqun_list.remove(i)
-def jiluo(zidan,zhui,w,h):
+
+def jiluo(zidan,zhui,w,h): #爆炸击落函数
     for i in zidan.fire_list:
         if (zhui.rect.x < i.x < zhui.rect.x +w) and (zhui.rect.y < i.y < zhui.rect.y + h):
             zhui.bomb()
